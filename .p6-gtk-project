@@ -1,0 +1,12 @@
+prefix=GEXIV2
+struct-prefix=GExiv2
+modules=GEXIV2::Raw::Types
+backups=backup,google-backup,github,sourcehut
+hfile-prefix=
+lib=gexiv2
+include-directory=/home/cbwood/Projects/gexiv2/gexiv2
+exec=p6gtkexec
+subprefixes=
+idir-avail=True
+extension=.h
+build-exclude=GEXIV2::Raw::Traps
