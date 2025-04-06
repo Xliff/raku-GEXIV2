@@ -501,7 +501,7 @@ class GEXIV2::Metadata {
   }
 
   method get_tag_type (Str() $tag)
-    is DEPRECATED('try_get_tag_type')s
+    is DEPRECATED('try_get_tag_type')
     is also<get-tag-type>
   {
     gexiv2_metadata_get_tag_type($tag);
@@ -639,7 +639,7 @@ class GEXIV2::Metadata {
   }
 
   method set_exif_tag_rational (Str() $tag, Int() $nom, Int() $den)
-    is DEPRECATED('try_set_exif_tag_rational')s
+    is DEPRECATED('try_set_exif_tag_rational')
     is also<set-exif-tag-rational>
   {
     my gint ($n, $d) = ($nom, $den);
@@ -1198,7 +1198,7 @@ class GEXIV2::Metadata {
     clear_error;
     my $r = so gexiv2_metadata_try_has_tag($!em, $tag, $error);
     set_error($error);
-    $r;s
+    $r;
   }
 
   method try_register_xmp_namespace (
@@ -1259,10 +1259,13 @@ class GEXIV2::Metadata {
   multi method try_set_exif_thumbnail_from_buffer (@buffer, $error = gerror) {
     samewith( CArray[uint8].new(@buffer), @buffer.elems, $error );
   }
-  method try_set_exif_thumbnail_from_buffer (Blob $buffer, $error = gerror) {
+  multi method try_set_exif_thumbnail_from_buffer (
+    Blob $buffer,
+         $error   = gerror
+  ) {
     samewith( CArray[uint8].new($buffer), $buffer.bytes, $error );
   }
-  method try_set_exif_thumbnail_from_buffer (
+  multi method try_set_exif_thumbnail_from_buffer (
     CArray[uint8]           $buffer,
     Int()                   $size,
     CArray[Pointer[GError]] $error = gerror
@@ -1376,11 +1379,11 @@ class GEXIV2::Metadata {
       $error
     );
     set_error($error);
-    $rf;
+    $r;
   }
 
   method try_set_tag_string (
-    Str()                   1$tag,
+    Str()                   $tag,
     Str()                   $value,
     CArray[Pointer[GError]] $error   = gerror;
   )
@@ -1464,7 +1467,7 @@ class GEXIV2::Metadata {
       $a,
       $error
     );
-    set_error($error);l
+    set_error($error);
     $r;
   }
 
